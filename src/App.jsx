@@ -1,19 +1,21 @@
+import { Route, Routes } from "react-router-dom"
 import MainPokedex from "./components/MainPokedex"
-import PokeCard from "./components/PokeCard"
 import StartPage from "./components/StartPage"
-import useFetch from "./hooks/useFetch"
+import PagePokemonInfo from "./components/PagePokemonInfo"
+import ProtectedRoutes from "./components/ProtectedRoutes"
 
-
-const BaseURL = "https://pokeapi.co/api/v2/pokemon/"
 
 function App() {
-  const {data} = useFetch(BaseURL)
 
 
   return (
-    <main className="bg-[#E3ECF2] min-h-screen w-full flex justify-center items-center">
-      <PokeCard data={data} />
-    </main>
+    <Routes>
+      <Route path="/" element={<StartPage />} />
+      <Route element={<ProtectedRoutes />}>
+        <Route path="/pokedex" element={<MainPokedex />} />
+        <Route path="/pokedex/:id" element={<PagePokemonInfo />} />
+      </Route>
+    </Routes>
   )
 }
 
