@@ -1,8 +1,10 @@
+
 import { useEffect, useState } from "react";
 
 function useDominantColor(imageUrl) {
   const [dominantColor, setDominantColor] = useState(null);
   const [darkerColor, setDarkerColor] = useState(null);
+  const [lighterColor, setLighterColor] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -15,6 +17,7 @@ function useDominantColor(imageUrl) {
         if (isMounted) {
           setDominantColor(colors.dominantColor);
           setDarkerColor(colors.darkerColor);
+          setLighterColor((colors.lighterColor));
           setLoading(false);
         }
       } catch (error) {
@@ -32,7 +35,7 @@ function useDominantColor(imageUrl) {
     };
   }, [imageUrl]);
 
-  return { dominantColor, darkerColor, loading, error };
+  return { dominantColor, darkerColor, lighterColor, loading, error };
 }
 
 async function extractDominantColors(imageUrl) {
@@ -51,6 +54,7 @@ async function extractDominantColors(imageUrl) {
       const pixels = imageData.data;
 
       const colorMap = {};
+      
 
       for (let i = 0; i < pixels.length; i += 4) {
         const r = pixels[i];
@@ -68,17 +72,20 @@ async function extractDominantColors(imageUrl) {
         }
       }
 
+
       const colors = Object.keys(colorMap).sort((a, b) => colorMap[b] - colorMap[a]);
 
       let dominantColor = null;
       let darkerColor = null;
+      let lighterColor = null;
 
       if (colors.length > 0) {
         dominantColor = colors[0];
         darkerColor = getDarkerColor(dominantColor);
+        lighterColor = getLighterColor(dominantColor);
       }
 
-      resolve({ dominantColor: rgbToHex(dominantColor), darkerColor: rgbToHex(darkerColor) });
+      resolve({ dominantColor: rgbToHex(dominantColor), darkerColor: rgbToHex(darkerColor), lighterColor: rgbToHex(lighterColor) });
     };
 
     img.onerror = function(error) {
@@ -97,12 +104,29 @@ function getDarkerColor(color) {
   const g = parseInt(rgb[2]);
   const b = parseInt(rgb[3]);
 
-  const darkerRed = Math.max(0, r - 20);
-  const darkerGreen = Math.max(0, g - 20);
-  const darkerBlue = Math.max(0, b - 20);
+  const darkerRed = Math.max(0, r - 30);
+  const darkerGreen = Math.max(0, g - 30);
+  const darkerBlue = Math.max(0, b - 30);
 
   return `rgb(${darkerRed},${darkerGreen},${darkerBlue})`;
 }
+
+
+function getLighterColor(color) {
+  const rgb = color.match(/\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(\.\d+)?))?\)/);
+  if (!rgb) return null;
+
+  const r = parseInt(rgb[1]);
+  const g = parseInt(rgb[2]);
+  const b = parseInt(rgb[3]);
+
+  const lighterRed = Math.min(255, r + 30);
+  const lighterGreen = Math.min(255, g + 30);
+  const lighterBlue = Math.min(255, b + 30);
+
+  return `rgb(${lighterRed},${lighterGreen},${lighterBlue})`;
+}
+
 
 function rgbToHex(rgb) {
   const rgbaRegex = /rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(\.\d+)?))?\)/;
@@ -115,6 +139,30 @@ function rgbToHex(rgb) {
 
   return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
 }
+
+
+export default useDominantColor;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* function getLighterColor(color) {
   const rgb = color.match(/\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(\.\d+)?))?\)/);
@@ -130,93 +178,3 @@ function rgbToHex(rgb) {
 
   return `rgb(${darkerRed},${darkerGreen},${darkerBlue})`;
 } */
-
-export default useDominantColor;
-
-
-
-
-/* import { useState, useEffect } from 'react';
-
-function useDominantColor(imageUrl) {
-  const [dominantColor, setDominantColor] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    let isMounted = true;
-
-    async function fetchDominantColor() {
-      try {
-        const color = await extractDominantColor(imageUrl);
-        if (isMounted) {
-          setDominantColor(color);
-          setLoading(false);
-        }
-      } catch (error) {
-        if (isMounted) {
-          setError(error);
-          setLoading(false);
-        }
-      }
-    }
-
-    fetchDominantColor();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [imageUrl]);
-
-  return { dominantColor, loading, error };
-}
-
-async function extractDominantColor(imageUrl) {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.crossOrigin = "Anonymous";
-    img.onload = function() {
-      const canvas = document.createElement("canvas");
-      canvas.width = img.width;
-      canvas.height = img.height;
-
-      const ctx = canvas.getContext("2d");
-      ctx.drawImage(img, 0, 0);
-
-      const imageData = ctx.getImageData(0, 0, img.width, img.height);
-      const pixels = imageData.data;
-
-      const colorMap = {};
-
-      for (let i = 0; i < pixels.length; i += 4) {
-        const r = pixels[i];
-        const g = pixels[i + 1];
-        const b = pixels[i + 2];
-        const alpha = pixels[i + 3];
-
-        // Excluir píxeles transparentes
-        if (alpha !== 0) {
-          const color = `rgb(${r},${g},${b})`;
-          if (!colorMap[color]) {
-            colorMap[color] = 0;
-          }
-          colorMap[color]++;
-        }
-      }
-
-      const colors = Object.keys(colorMap).sort((a, b) => colorMap[b] - colorMap[a]);
-      const dominantColor = colors[0] || null;
-
-      resolve(dominantColor);
-    };
-
-    img.onerror = function(error) {
-      reject(error);
-    };
-
-    img.src = imageUrl;
-  });
-}
-
-export default useDominantColor;
- */

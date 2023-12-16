@@ -4,8 +4,8 @@ import PokeCard from "./PokeCard"
 
 
 const BaseURL = "https://pokeapi.co/api/v2/pokemon/?limit="
-const limit = 10
-const offset = 10
+const limit = 20
+const offset = 151
 
 
 const MainPokedex = () => {
