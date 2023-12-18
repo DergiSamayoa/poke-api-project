@@ -104,9 +104,9 @@ function getDarkerColor(color) {
   const g = parseInt(rgb[2]);
   const b = parseInt(rgb[3]);
 
-  const darkerRed = Math.max(0, r - 30);
-  const darkerGreen = Math.max(0, g - 30);
-  const darkerBlue = Math.max(0, b - 30);
+  const darkerRed = Math.max(0, r - 50);
+  const darkerGreen = Math.max(0, g - 50);
+  const darkerBlue = Math.max(0, b - 50);
 
   return `rgb(${darkerRed},${darkerGreen},${darkerBlue})`;
 }
