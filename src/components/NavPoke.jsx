@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux"
 import InputSearch from "./InputSearch"
 import useFetch from "../hooks/useFetch"
 import { setDataPokemons } from "../store/slices/dataPokemons"
-import { useEffect, useState } from "react"
 
 const NavPoke = () => {
   const {data:{ results = []}} = useFetch('https://pokeapi.co/api/v2/type/')
@@ -15,7 +14,7 @@ const NavPoke = () => {
     
     try {
       if (value === "all") {
-        const response =  await fetch("https://pokeapi.co/api/v2/pokemon/?limit=15&offset=151")
+        const response =  await fetch("https://pokeapi.co/api/v2/pokemon/?limit=1292")
         const data = await response.json()
         const newDataTypes = data.results
         dispatch(setDataPokemons(newDataTypes))

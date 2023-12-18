@@ -142,39 +142,3 @@ function rgbToHex(rgb) {
 
 
 export default useDominantColor;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* function getLighterColor(color) {
-  const rgb = color.match(/\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(\.\d+)?))?\)/);
-  if (!rgb) return null;
-
-  const r = parseInt(rgb[1]);
-  const g = parseInt(rgb[2]);
-  const b = parseInt(rgb[3]);
-
-  const darkerRed = Math.max(0, r - 20);
-  const darkerGreen = Math.max(0, g - 20);
-  const darkerBlue = Math.max(0, b - 20);
-
-  return `rgb(${darkerRed},${darkerGreen},${darkerBlue})`;
-} */
