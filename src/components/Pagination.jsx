@@ -1,3 +1,5 @@
+import { useEffect } from "react"
+
 const Pagination = ({
         lastPage, 
         pagesOnCurrentBlock, 
@@ -16,6 +18,12 @@ const Pagination = ({
     const handleNextPage = () => {
         setCurrentPage(currentPage + 1)
     }
+
+
+    useEffect(() => {
+        window.scrollTo(0, 0); // Se desplaza al principio de la página cada vez que currentPage cambia
+    }, [currentPage]);
+
 
     return (
         <ul className="text-lg flex gap-2 justify-center items-center font-semibold mt-10 max-sm:flex-wrap">

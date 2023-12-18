@@ -4,13 +4,17 @@ import useFetch from "../hooks/useFetch";
 import ShowTypePokemon from "../utils/ShowTypes";
 import Loader from "./Loader";
 
+
+
+//data?.sprites?.other["home"].front_default
+
 const PokeCard = ({ pokemon }) => {
   const urlPokemon = pokemon.url
   const { data, loading: load} = useFetch(urlPokemon);
   //console.log(data)
-  const { dominantColor, darkerColor, lighterColor, loading } = useDominantColor(data?.sprites?.other["official-artwork"].front_default);
+  const { dominantColor, darkerColor, lighterColor, loading } = useDominantColor(data?.sprites?.other["dream_world"].front_default || data?.sprites?.other["official-artwork"].front_default || data?.sprites?.front_default);
 
-  //console.log(data)
+  console.log(data)
   return (
     <>
       {load || loading ? (<Loader />) : 
