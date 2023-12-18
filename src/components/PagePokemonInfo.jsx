@@ -1,6 +1,9 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import NavPoke from "./NavPoke";
+import useDominantColor from "../hooks/useDominantColor";
+
 
 const PagePokemonInfo = () => {
   const [pokemonInfo, setPokemonInfo] = useState(null);
@@ -12,27 +15,33 @@ const PagePokemonInfo = () => {
     return percent + "%";
     
   }
+  
+  
+  
+  const { dominantColor, darkerColor, lighterColor, loading} =useDominantColor(pokemonInfo?.sprites?.other["official-artwork"].front_default)
 
   const colorByType =  {
-    grass: "bg-green-500",
-    fire: "bg-red-500",
-    water: "bg-blue-500",
-    electric: "bg-yellow-500",
-    normal: "bg-gray-500",
-    ice: "bg-cyan-500",
-    ground: "bg-amber-500",
-    rock: "bg-orange-500",
-    bug: "bg-lime-500",
-    ghost: "bg-purple-500",
-    poison: "bg-fuchsia-500",
-    steel: "bg-slate-500",
-    fighting: "bg-pink-500",
-    flying: "bg-sky-500",
-    dragon: "bg-violet-500",
-    dark: "bg-black",
-    fairy: "bg-fuchsia-500",
-    unknown: "bg-gray-500",
-    shadow: "bg-gray-500",
+    normal:"bg-[#c3b59b]",
+    grass: "bg-[#35b44b]",
+    fire: "bg-[#f7941f]",
+    water: "bg-[#00aeed]",
+    electric: "bg-[#faeb30]",
+    ice: "bg-[#a3dcf7]",
+    ground: "bg-[#ffcc69]",
+    rock: "bg-[#c39a6e]",
+    bug: "bg-[#aacf4e]",
+    ghost: "bg-[#877299]",
+    poison: "bg-[#91288d]",
+    steel: "bg-[#a1abb4]",
+    fighting: "bg-[#bc1e2c]",
+    flying: "bg-[#c2b7d9]",
+    dragon: "bg-[#4d2f8f]",
+    dark: "bg-[#3e2417]",
+    fairy: "bg-[#f392bd]",
+    unknown: "bg-[#343436]",
+    pshychic: "bg-[#ec2b7a]",
+    cell: "bg-[#68afa9]",
+    cyber: "bg-[#3956a4]",
 
     
   }
@@ -57,36 +66,63 @@ console.log(pokemonInfo?.moves.map((move) => move.move.name));
 
   return (
     <main >
-      <article className=" max-w-[500px] mx-auto ">
-        <header>
-          <img src={pokemonInfo?.sprites?.other["official-artwork"].front_default} alt="" />
+      
+        <NavPoke />
+     
+      <article className=" max-w-[1108px] mx-auto my-72">
+
+        
+        <header className="relative">
+          <img className="absolute -top-[250px] left-[calc(50%-250px)]" src={pokemonInfo?.sprites?.other["official-artwork"].front_default} alt="" />
+          <div className=" h-[200px] " 
+          style={
+            {
+              background: `radial-gradient(circle at 50% 37%, ${lighterColor} 5px, ${darkerColor})`, borderColor: dominantColor, color: darkerColor 
+            }
+          }>.
+          </div>
         </header>
-        {/*1RO*/}
+
+        <div className="p-3 grid gap-8 shadow-lg ">
+          {/*1RO*/}
         <section className="text-center ">
-           <span>#{pokemonInfo?.id}</span>
-        <h3>Pokemon Name</h3>
-        <div className=" grid grid-cols-2">
-          <div>
-            <h5>weight</h5>
-            <span>{pokemonInfo?.weight}</span>
+
+          <div className="text-[45px] capitalize">
+            <span>#{pokemonInfo?.id}</span>
+            <div className="flex justify-center items-center gap-1">
+              <hr className="w-[200px]" />
+              <h3 >{pokemonInfo?.name}</h3>
+              <hr className="w-[200px]"/>
+            </div>
+              
+            
+            
           </div>
-          <div>
-            <h5>height</h5>
-            <span>{pokemonInfo?.height}</span>
+        
+           <div className=" grid grid-cols-2 pt-1">
+            <div>
+            <h5 className="text-[16px]">weight</h5>
+            <span className="text-[25px]">{pokemonInfo?.weight}</span>
+            </div>
+            <div>
+            <h5 className="text-[16px]">height</h5>
+            <span className="text-[25px]">{pokemonInfo?.height}</span>
           </div>
-        </div>
+        
+        </div>  
+         
         </section>
        
        
         {/*2DO*/}
         <section className="grid grid-cols-2 gap-4 text-center">
         <div>
-          <h4>types</h4>
+          <h4 className="text-[30px]">types</h4>
           <ul className="flex justify-center gap-4">
             {pokemonInfo?.types.map((type) => (
               <li
                 key={type.type.name}
-                className={`capitalize ${colorByType[type.type.name]}`}
+                className={`capitalize text-[25px]  px-14 py-[1px] rounded-md text-yellow-100 ${colorByType[type.type.name]}`}
               >
                 {type.type.name}
               </li>
@@ -95,11 +131,18 @@ console.log(pokemonInfo?.moves.map((move) => move.move.name));
         </div>
 
           <div>  
-            <h4>abilities</h4>
-            <ul className="flex justify-center gap-4">
-              <li>
-              {pokemonInfo?.abilities.map((ability) => ability.ability.name).join(" / ")}
-            </li>
+            <h4 className="text-[30px]">abilities</h4>
+            <ul className="flex justify-center gap-4 flex-wrap">
+            
+              {pokemonInfo?.abilities.map((ability) => (
+                <li key={ability.ability.name}
+                    className="capitalize text-[25px] border-2 px-14 py-[1px] h-10 ">
+                  {ability.ability.name}
+                </li>
+                
+                
+                )) }
+            
             </ul>
             
             
@@ -117,7 +160,7 @@ console.log(pokemonInfo?.moves.map((move) => move.move.name));
               
               <li key={stat.stat.name}>
                 <div className="flex justify-between">
-                  <h5 className="capitalize">{stat.stat.name}</h5>
+                  <h5 className="capitalize">{stat.stat.name} :</h5>
                   <span>{stat.base_stat}/255</span>
                 </div>
                 {/*Contenedor de barra de progreso*/}
@@ -140,12 +183,24 @@ console.log(pokemonInfo?.moves.map((move) => move.move.name));
         </section>
 
 
-        {/*4TO*/}
-        <section >
-          <h4>movements</h4>
-          <ul className="flex flex-wrap text-sm ">
-          {pokemonInfo?.moves.map((move) => 
-           move.move.name).join(" / ")}
+       
+        </div>
+        <br /><br /><br />
+         {/*4TO*/}
+        <section className="shadow-md p-3">
+          <div className="grid grid-cols-2 items-center" >
+           <h4 className="text-[45px]" >Movements</h4> 
+           <hr className="w-100 h-5" />
+          </div>
+          
+          <ul className="flex flex-wrap text-sm justify-center justify-between">
+          {pokemonInfo?.moves.map((move) => (
+            <li key={move.move.name}
+            className="bg-[#E5E5E5]  p-2 m-1 rounded-full px-5">
+              {move.move.name}
+            </li>
+          )
+           )}
           </ul>
         </section>
       </article>
