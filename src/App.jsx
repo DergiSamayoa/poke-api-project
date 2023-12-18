@@ -1,16 +1,19 @@
 import { Route, Routes } from "react-router-dom"
 import MainPokedex from "./components/MainPokedex"
+import ProtectedRoutes from "./components/ProtectedRoutes"
+import StartPage from "./components/StartPage"
 import PagePokemonInfo from "./components/PagePokemonInfo"
 
 function App() {
 
   return (
     <Routes>
+      {/* <Route path="/" element={<StartPage />} /> */}
       <Route path="/" element={<MainPokedex />} />
-      {/* <Route element={<ProtectedRoutes />}> */}
+      <Route element={<ProtectedRoutes />}>
         <Route path="/pokedex" element={<MainPokedex />} />
         <Route path="/pokedex/:id" element={<PagePokemonInfo />} />
-      {/* </Route> */}
+      </Route>
     </Routes>
   )
 }

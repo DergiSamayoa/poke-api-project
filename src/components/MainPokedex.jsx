@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { setDataPokemons } from "../store/slices/dataPokemons"
 import { useEffect } from "react"
 import usePagination from "../hooks/usePagination"
+import Pagination from "./Pagination"
 
 
 const BaseURL = "https://pokeapi.co/api/v2/pokemon/?limit="
@@ -19,9 +20,15 @@ const MainPokedex = () => {
   const { data:{ results = []} } = useFetch(BaseUrlComplete)
   const searchPokemon = useSelector((store) => store.searchPokemon)
 
-  const { currentPage, setCurrentPage, nextPage, prevPage, totalPages, currentDisplay } = usePagination(dataPokemons, 20)
-
-
+  const { 
+      currentPage, 
+      setCurrentPage, 
+      nextPage, 
+      prevPage, 
+      totalPages, 
+      currentDisplay,
+      pagesOnCurrentBlock 
+    } = usePagination(dataPokemons, 20)
 
   useEffect(() => {
     if(results && results.length > 0) {
@@ -33,7 +40,7 @@ const MainPokedex = () => {
     return poke.name.toLowerCase().includes(searchPokemon.toLowerCase())
   })
 
-  console.log(currentDisplay)
+  // console.log(currentDisplay)
 
   useEffect(() => {
     // Precargar imágenes de los Pokémon
@@ -46,18 +53,19 @@ const MainPokedex = () => {
     });
   }, [filterDataPokemons]);
 
+  // console.log(filterDataPokemons)
 
-  console.log(filterDataPokemons)
   return (
     <>
-    <NavPoke />
-    <main className="bg-[#E3ECF2] min-h-screen w-full p-10">
-    <article className="w-full grid grid-cols-4 gap-10 place-items-center max-w-[1920px] mx-auto">
-      {currentDisplay.map((pokemon) => (
-        <PokeCard key={pokemon.name} pokemon={pokemon} />
-      ))}
-    </article>
-    </main>
+      <NavPoke />
+      <main className="bg-[#E3ECF2] min-h-screen w-full p-10">
+        <article className="w-full grid grid-cols-4 gap-10 place-items-center max-w-[1920px] mx-auto">
+          {currentDisplay.map((pokemon) => (
+            <PokeCard key={pokemon.name} pokemon={pokemon} />
+          ))}
+        </article>
+        <Pagination lastPage={totalPages} pagesOnCurrentBlock={pagesOnCurrentBlock} />
+      </main>
     </>
   )
 }

@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react"
 
 const usePagination = (data = [], itemsInPage = 10) => {
+    const blockSize = localStorage.getItem("POKEMONS_PAGES_PER_BLOCK");
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(0)
     const [currentDisplay, setCurrentDisplay] = useState([])
+    const currentBlock = Math.ceil(currentPage / blockSize);
 
-    useEffect(() => {
+    useEffect(() => { //cada vez que cambie la data o la pagina actual
         const itemsPerPage = itemsInPage
 
         const indexOfLastItem = currentPage * itemsPerPage
@@ -16,8 +18,7 @@ const usePagination = (data = [], itemsInPage = 10) => {
 
         const pages = Math.ceil(data.length / itemsPerPage)  //paginas totales
         setTotalPages(pages)
-    }, [data, currentPage])
-
+    }, [data, currentPage, itemsInPage])
 
     const nextPage = () => {
         if (currentPage >= totalPages) return
@@ -29,9 +30,15 @@ const usePagination = (data = [], itemsInPage = 10) => {
         setCurrentPage(currentPage - 1)
     }
 
-
-
-
+    const pagesOnCurrentBlock = [];
+    const maxPage = currentBlock * blockSize;
+    const minPage = maxPage - blockSize + 1;
+    for (let i = minPage; i <= maxPage; i++) {
+        if (i <= totalPages && i > 0) {
+            pagesOnCurrentBlock.push(i);
+        }
+        console.log(pagesOnCurrentBlock)
+    }
 
     return {
         currentPage,
@@ -39,7 +46,8 @@ const usePagination = (data = [], itemsInPage = 10) => {
         totalPages,
         nextPage,
         prevPage,
-        currentDisplay
+        currentDisplay,
+        pagesOnCurrentBlock
     }
 }
 export default usePagination
