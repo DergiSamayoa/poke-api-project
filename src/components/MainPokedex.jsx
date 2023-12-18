@@ -7,7 +7,6 @@ import { useEffect } from "react"
 import usePagination from "../hooks/usePagination"
 import Pagination from "./Pagination"
 import { setPokemonNames } from "../store/slices/pokemonNames"
-import SettingsPage from "./SettingsPage"
 
 const BaseUrlComplete = "https://pokeapi.co/api/v2/pokemon/?limit=1292"
 
@@ -40,7 +39,7 @@ const MainPokedex = () => {
     <>
       <NavPoke />
       <main className="bg-[#E3ECF2] min-h-screen w-full p-10">
-        <article className="w-full grid grid-cols-4 gap-10 place-items-center max-w-[1920px] mx-auto">
+        <article className="w-full grid grid-cols-4 gap-10 place-items-center max-w-[1920px] mx-auto max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1">
           {currentDisplay.map((pokemon) => (
             <PokeCard key={pokemon.name} pokemon={pokemon} />
           ))}
@@ -54,7 +53,6 @@ const MainPokedex = () => {
               prevPage={prevPage}
           />
       </main>
-      <SettingsPage />
     </>
   )
 }

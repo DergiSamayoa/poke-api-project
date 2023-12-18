@@ -3,7 +3,6 @@ import { useState } from "react"
 const URLapi = "https://pokeapi.co/api/v2/pokemon"
 
 
-
 const useGetAllData = (url) => {
   const [data, setData] = useState([])
 

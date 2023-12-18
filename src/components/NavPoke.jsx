@@ -2,8 +2,11 @@ import { useDispatch, useSelector } from "react-redux"
 import InputSearch from "./InputSearch"
 import useFetch from "../hooks/useFetch"
 import { setDataPokemons } from "../store/slices/dataPokemons"
+import { useState } from "react"
+import SettingsPage from "./SettingsPage"
 
 const NavPoke = () => {
+  const [showSettings, setShowSettings] = useState(false)
   const {data:{ results = []}} = useFetch('https://pokeapi.co/api/v2/type/')
   
   const dispatch = useDispatch()
@@ -28,11 +31,16 @@ const NavPoke = () => {
     }
   }
 
+
+  const handleOptionsPage = () => {
+    setShowSettings(true)
+  }
+
   return (
-    <nav className="h-[150px] w-full bg-[#cc0000] bg-contain bg-no-repeat flex justify-center items-center text-black">
-      <section className="relative w-[95%] max-w-[1920px] h-[90%] bg-[#fff] rounded-xl shadow-[0_5px_50px_0_rgba(55,71,79,0.1)] flex gap-6 items-center justify-end px-6">
-        <img className="w-[250px] absolute top-[-20px] left-10" src="/images/logo.png" alt="" />
-        <h2 className="text-[#cc0000] absolute bottom-2 left-10 text-lg font-medium">Welcome Trainer Jesús!</h2>
+    <nav className="h-[150px] w-full bg-[#cc0000] bg-contain bg-no-repeat flex justify-center items-center text-black max-lg:h-[230px]">
+      <section className="relative w-[95%] max-w-[1920px] h-[90%] bg-[#fff] rounded-xl shadow-[0_5px_50px_0_rgba(55,71,79,0.1)] flex gap-6 items-center justify-end px-6 max-lg:flex-col">
+        <img className="w-[250px] absolute top-[-20px] left-10 max-lg:w-[150px] max-lg:top-[-10px] max-lg:left-[calc(50%-75px)]" src="/images/logo.png" alt="" />
+        <h2 className="w-full text-[#cc0000] absolute bottom-2 left-10 text-lg font-medium max-lg:top-[60px] max-lg:text-center max-lg:left-0">Welcome Trainer PokeManiaco!</h2>
         <InputSearch />
         <select onChange={handleOptions} className="capitalize w-[200px] h-[40px] rounded-md  flex justify-between shadow-[0_5px_50px_0_rgba(55,71,79,0.2)] border-[1px] border-[#eee] px-4 outline-none" name="" id="">
           <option value="all">All</option>
@@ -40,6 +48,8 @@ const NavPoke = () => {
             return <option className="capitalize" key={type.name} value={type.name}>{type.name}</option>
           })}
         </select>
+        <i onClick={handleOptionsPage} className="ri-settings-4-fill text-2xl absolute top-1 right-2 text-red-700 select-none"></i>
+        {showSettings ? <SettingsPage setShowSettings={setShowSettings}/> : null}
       </section>
     </nav>
   )
