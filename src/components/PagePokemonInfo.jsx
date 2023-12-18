@@ -1,7 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import useFetch from "../hooks/useFetch"
 
 const PagePokemonInfo = () => {
   const [pokemonInfo, setPokemonInfo] = useState(null);
@@ -52,7 +51,6 @@ console.log(pokemonInfo?.moves.map((move) => move.move.name));
   if(!pokemonInfo) {
     return <p>Loading...</p>
   }
-  console.log(data)
 
  //hay que trabajaras
 
