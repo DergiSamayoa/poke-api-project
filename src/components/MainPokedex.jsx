@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { setDataPokemons } from "../store/slices/dataPokemons"
 import { useEffect } from "react"
 import usePagination from "../hooks/usePagination"
+import Pagination from "./Pagination"
 import { setPokemonNames } from "../store/slices/pokemonNames"
-
+import SettingsPage from "./SettingsPage"
 
 const BaseUrlComplete = "https://pokeapi.co/api/v2/pokemon/?limit=1292"
 
@@ -44,8 +45,14 @@ const MainPokedex = () => {
             <PokeCard key={pokemon.name} pokemon={pokemon} />
           ))}
         </article>
-        <Pagination lastPage={totalPages} pagesOnCurrentBlock={pagesOnCurrentBlock} />
+        <Pagination 
+              lastPage={totalPages} 
+              pagesOnCurrentBlock={pagesOnCurrentBlock} 
+              setCurrentPage={setCurrentPage} 
+              currentPage={currentPage}
+          />
       </main>
+      <SettingsPage />
     </>
   )
 }
