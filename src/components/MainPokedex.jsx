@@ -50,6 +50,8 @@ const MainPokedex = () => {
               pagesOnCurrentBlock={pagesOnCurrentBlock} 
               setCurrentPage={setCurrentPage} 
               currentPage={currentPage}
+              nextPage={nextPage}
+              prevPage={prevPage}
           />
       </main>
       <SettingsPage />
