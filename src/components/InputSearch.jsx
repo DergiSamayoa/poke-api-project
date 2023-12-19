@@ -10,9 +10,9 @@ const InputSearch = () => {
     filterNames(e.target.name.value)
   }
 
-  const handleChange = (e) => {
+  /* const handleChange = (e) => {
     filterNames(e.target.value)
-  }
+  } */
 
   function filterNames(value) {
     const filterNames = pokemonNames.filter((name) => {
@@ -24,9 +24,9 @@ const InputSearch = () => {
 
   return (
     <form onSubmit={handleSubmit}
-          className="w-[400px] h-[40px] rounded-md  flex justify-between shadow-[2px_2px_50px_0_rgba(55,71,79,0.2)] border-[1px] border-[#eee] max-sm:w-auto">
-      <input className="rounded-xl px-4 w-[300px] outline-none max-sm:w-[250px]" type="text" name="name" placeholder="Search your pokemon!" autoComplete="off"/>
-      <button className="w-[80px] h-full bg-[#cc0000] rounded-md text-white">Search</button>
+          className="w-[400px] h-[40px] rounded-md  flex justify-between shadow-[2px_2px_50px_0_rgba(55,71,79,0.2)] border-[1px] border-[#eee] max-sm:w-auto dark:border-slate-600">
+      <input className="bg-transparent rounded-xl px-4 w-full outline-none max-sm:w-[200px] dark:text-white" type="text" name="name" placeholder="Search your pokemon!" autoComplete="off"/>
+      <button className="w-[80px] h-full bg-[#cc0000] rounded-md text-white max-sm:w-[60px]">Search</button>
     </form>
   )
 }
