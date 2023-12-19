@@ -7,12 +7,14 @@ const InputSearch = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    alert(e.target)
+    filterNames(e.target.name.value)
   }
 
   const handleChange = (e) => {
-    let value = e.target.value
-    alert(e.target)
+    filterNames(e.target.value)
+  }
+
+  function filterNames(value) {
     const filterNames = pokemonNames.filter((name) => {
       return name.name.toLowerCase().includes(value.toLowerCase())
     })
