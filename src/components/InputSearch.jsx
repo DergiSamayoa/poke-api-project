@@ -20,6 +20,7 @@ const InputSearch = () => {
       return name.name.toLowerCase().includes(value.toLowerCase())
     })
     dispatch(setDataPokemons(filterNames))
+    
   }
 
   const [inputValue, setInputValue] = useState('')
@@ -30,7 +31,6 @@ const InputSearch = () => {
     const value = event.target.value.toLowerCase()
     setInputValue(value)
     if(value.length > 0){
-      console.log(options)
       setFilteredOptions(
             options.filter(
                 (option) => option.includes(value)
@@ -63,20 +63,20 @@ const InputSearch = () => {
         Search
       </button>
       {filteredOptions.length > 0 && (
-                <ul className="absolute mt-10 w-[260px] z-50 bg-[#ffcb05] p-1">
-                {filteredOptions.map((option, index) => (
-                    <li
-                        key={index}
-                        onClick={() => handleOptionClick(option)}
-                        className="cursor-pointer bg-[#ffcb05]  text-[#306cb4]
-                             hover:bg-[#306cb4] hover:text-[#ffcb05] p-2
-                             rounded-md"
-                    >
-                    {option}
-                    </li>
-                )).slice(0, 10)}
-                </ul>
-            )}
+          <ul className="absolute mt-10 w-[260px] z-50 bg-[#ffcb05] p-1">
+          {filteredOptions.map((option, index) => (
+              <li
+                  key={index}
+                  onClick={() => handleOptionClick(option)}
+                  className="cursor-pointer bg-[#ffcb05]  text-[#306cb4]
+                        hover:bg-[#306cb4] hover:text-[#ffcb05] p-2
+                        rounded-md"
+              >
+              {option}
+              </li>
+          )).slice(0, 10)}
+          </ul>
+      )}
     </form>
   )
 }
