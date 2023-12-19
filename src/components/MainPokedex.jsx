@@ -10,7 +10,6 @@ import { setPokemonNames } from "../store/slices/pokemonNames"
 
 const BaseUrlComplete = "https://pokeapi.co/api/v2/pokemon/?limit=1292"
 
-
 const MainPokedex = () => {
   const dispatch = useDispatch()
   const { data:{ results = []} } = useFetch(BaseUrlComplete)
@@ -33,15 +32,13 @@ const MainPokedex = () => {
     }
   }, [dispatch, results])
 
-  // console.log(filterDataPokemons)
-
   return (
     <>
       <NavPoke />
-      <main className="bg-[#E3ECF2] min-h-screen w-full p-10">
+      <main className="bg-[#E3ECF2] min-h-screen w-full p-10 dark:bg-slate-700">
         <article className="w-full grid grid-cols-4 gap-10 place-items-center max-w-[1920px] mx-auto max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1">
-          {currentDisplay.map((pokemon) => (
-            <PokeCard key={pokemon.name} pokemon={pokemon} />
+          {currentDisplay.map((pokemon, index) => (
+            <PokeCard key={pokemon.name} pokemon={pokemon} index={index}/>
           ))}
         </article>
         <Pagination 
@@ -51,7 +48,7 @@ const MainPokedex = () => {
               currentPage={currentPage}
               nextPage={nextPage}
               prevPage={prevPage}
-          />
+              />
       </main>
     </>
   )

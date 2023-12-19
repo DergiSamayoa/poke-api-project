@@ -28,7 +28,7 @@ const Pagination = ({
     }, [currentPage]);
 
     return (
-        <ul className="text-lg flex gap-2 justify-center items-center font-semibold mt-10 max-sm:flex-wrap">
+        <ul className="text-lg flex gap-2 justify-center items-center font-semibold mt-10 max-sm:flex-wrap dark:text-white">
             <li>
                 <button
                     onClick={handleFirstPage}
