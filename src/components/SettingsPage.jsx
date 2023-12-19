@@ -34,8 +34,9 @@ const SettingsPage = ({ setShowSettings }) => {
           <input
             type="number"
             min="1"
-            max="100"
-            value={pagesPerBlock}
+            max="100"            
+            name='pagesPerBlock'
+            value={pagesPerBlock}            
             onChange={(e) => setPagesPerBlock(e.target.value)}
             className='border-2 rounded-lg shadow-md px-4 py-1 outline-none dark:border-slate-600 dark:bg-slate-700'
           />
@@ -46,6 +47,7 @@ const SettingsPage = ({ setShowSettings }) => {
             type="number"
             min="1"
             max="100"
+            name='pokemonsPerPage'
             value={pokemonsPerPage}
             onChange={(e) => setPokemonsPerPage(e.target.value)}
             className='border-2 rounded-lg shadow-md px-4 py-1 outline-none dark:border-slate-600 dark:bg-slate-700'

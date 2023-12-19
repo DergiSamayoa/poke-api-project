@@ -45,9 +45,9 @@ const PagePokemonInfo = () => {
 
     
   }
-console.log(pokemonInfo?.types.map((type) => type.type.name));
-console.log(pokemonInfo?.abilities.map((ability) => ability.ability.name));
-console.log(pokemonInfo?.moves.map((move) => move.move.name));
+// console.log(pokemonInfo?.types.map((type) => type.type.name));
+// console.log(pokemonInfo?.abilities.map((ability) => ability.ability.name));
+// console.log(pokemonInfo?.moves.map((move) => move.move.name));
 
   useEffect(() => {
     axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
