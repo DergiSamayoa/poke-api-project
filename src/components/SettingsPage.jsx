@@ -23,12 +23,12 @@ const SettingsPage = ({ setShowSettings }) => {
 
 
   return (
-    <motion.section initial={hidden} animate={visible} exit={exit} transition={transition} className='z-10 absolute w-[210px] h-[330px] bottom-[-230px] bg-white flex flex-col items-center justify-between shadow-xl p-4 rounded-lg border-[1px] max-lg:top-8 max-lg:right-5 dark:bg-slate-700 dark:text-white dark:border-slate-500'>
+    <motion.section initial={hidden} animate={visible} exit={exit} transition={transition} className='z-30 absolute w-[210px] h-[330px] bottom-[-230px] bg-white flex flex-col items-center justify-between shadow-xl p-4 rounded-lg border-[1px] max-lg:top-8 max-lg:right-5 dark:bg-slate-700 dark:text-white dark:border-slate-500'>
       <h3 className='text-2xl'>Settings</h3>
       <div onClick={() => setShowSettings(false)} className='select-none absolute -top-8 -right-5 text-white flex items-center justify-center p-4 bg-[#cc0000] h-[25px] w-[25px] rounded-full text-[20px]'>
       <i className="ri-close-fill "></i>
       </div>
-      <form onSubmit={handleFormSubmit} className='flex flex-col gap-4 items-center'>
+      <form onSubmit={handleFormSubmit} className='flex flex-col gap-4 items-center w-full'>
         <label>
           Pages per Block:
           <input
@@ -37,7 +37,7 @@ const SettingsPage = ({ setShowSettings }) => {
             max="100"
             value={pagesPerBlock}
             onChange={(e) => setPagesPerBlock(e.target.value)}
-            className='border-2 rounded-lg shadow-md px-4 py-1 outline-none dark:border-slate-600 dark:bg-slate-700'
+            className='w-full border-2 rounded-lg shadow-md px-4 py-1 outline-none dark:border-slate-600 dark:bg-slate-700'
           />
         </label>
         <label>
@@ -48,13 +48,13 @@ const SettingsPage = ({ setShowSettings }) => {
             max="100"
             value={pokemonsPerPage}
             onChange={(e) => setPokemonsPerPage(e.target.value)}
-            className='border-2 rounded-lg shadow-md px-4 py-1 outline-none dark:border-slate-600 dark:bg-slate-700'
+            className='w-full border-2 rounded-lg shadow-md px-4 py-1 outline-none dark:border-slate-600 dark:bg-slate-700'
           />
         </label>
         <label>
           Display theme:
           <select 
-          className='border-2 rounded-lg shadow-lg px-4 py-1 outline-none dark:border-slate-600 dark:bg-slate-700'
+          className='bg-white w-full border-2 rounded-lg shadow-lg px-4 py-1 outline-none dark:border-slate-600 dark:bg-slate-700'
             name="theme"
             value={modeDisplay} 
             onChange={(e) => setModeDisplay(e.target.value)}>
