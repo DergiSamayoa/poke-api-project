@@ -6,9 +6,9 @@ import variants from '../utils/variants';
 let { hidden, visible, exit, transition } = variants.bounce;
 
 const SettingsPage = ({ setShowSettings }) => {
-  const [pagesPerBlock, setPagesPerBlock] = useState(localStorage.getItem('POKEMONS_PAGES_PER_BLOCK'));
-  const [pokemonsPerPage, setPokemonsPerPage] = useState(localStorage.getItem('POKEMONS_PER_PAGE'));
-  const [modeDisplay, setModeDisplay] = useState(localStorage.getItem('POKEMONS_MODE_DISPLAY'));
+  const [pagesPerBlock, setPagesPerBlock] = useState(localStorage.getItem('POKEMONS_PAGES_PER_BLOCK') || 6);
+  const [pokemonsPerPage, setPokemonsPerPage] = useState(localStorage.getItem('POKEMONS_PER_PAGE') || 20);
+  const [modeDisplay, setModeDisplay] = useState(localStorage.getItem('POKEMONS_MODE_DISPLAY') || 'light');
 
   console.log(modeDisplay)
 
