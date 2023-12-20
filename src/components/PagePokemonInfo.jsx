@@ -5,6 +5,7 @@ import useDominantColor from "../hooks/useDominantColor";
 import NavPagePokeInfo from "./NavPagePokeInfo";
 
 
+
 const PagePokemonInfo = () => {
   const [pokemonInfo, setPokemonInfo] = useState(null);
 
@@ -15,6 +16,7 @@ const PagePokemonInfo = () => {
     return percent + "%";
     
   }
+  
   
   
   
@@ -67,9 +69,14 @@ const PagePokemonInfo = () => {
   return (
     <main >
       <section className=" w-[100vw] mx-auto max-sm:w-full ">
-         < NavPagePokeInfo  />
+        
+          < NavPagePokeInfo  />
+        
+         
+
       </section>
-       
+     
+           
      
       <article className=" w-[1008px] mx-auto my-72 font-roboto max-sm:w-[350px] max-sm:mx-auto max-sm:my-15 max-lg:w-[600px] max-lg:mx-auto max-lg:my-15 max-sm:-translate-y-52  ">
 
