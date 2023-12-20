@@ -24,7 +24,7 @@ const SettingsPage = ({ setShowSettings }) => {
     <motion.section initial={hidden} animate={visible} exit={exit} transition={transition} className='z-50 absolute w-[210px] h-[330px] bottom-[-230px] bg-white flex flex-col items-center justify-between shadow-xl p-4 rounded-lg border-[1px] max-lg:top-8 max-lg:right-5 dark:bg-slate-700 dark:text-white dark:border-slate-500'>
       <h3 className='text-2xl'>Settings</h3>
       <div onClick={() => setShowSettings(false)} className='select-none absolute -top-8 -right-5 text-white flex items-center justify-center p-4 bg-[#cc0000] h-[25px] w-[25px] rounded-full text-[20px]'>
-      <i className="ri-close-fill "></i>
+        <i className="ri-close-fill "></i>
       </div>
       <form onSubmit={handleFormSubmit} className='flex flex-col gap-4 items-center'>
         <label>
@@ -32,7 +32,7 @@ const SettingsPage = ({ setShowSettings }) => {
           <input
             type="number"
             min="1"
-            max="100"            
+            max="20"            
             name='pagesPerBlock'
             value={pagesPerBlock}            
             onChange={(e) => setPagesPerBlock(e.target.value)}
@@ -44,7 +44,7 @@ const SettingsPage = ({ setShowSettings }) => {
           <input
             type="number"
             min="1"
-            max="100"
+            max="40"
             name='pokemonsPerPage'
             value={pokemonsPerPage}
             onChange={(e) => setPokemonsPerPage(e.target.value)}

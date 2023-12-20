@@ -5,7 +5,6 @@ import StartPage from "./components/StartPage"
 import PagePokemonInfo from "./components/PagePokemonInfo"
 import { useEffect } from "react"
 
-
 const dark = localStorage.getItem('POKEMONS_MODE_DISPLAY')
 
 function App() {
@@ -18,8 +17,7 @@ function App() {
     }
   }, [])
 
-
-  console.log(dark)
+  // console.log(dark)
   return (
     <Routes>
       <Route path="/" element={<StartPage />} />
