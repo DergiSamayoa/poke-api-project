@@ -4,8 +4,9 @@ import { useParams } from "react-router-dom"
 import useDominantColor from "../hooks/useDominantColor";
 import NavPagePokeInfo from "./NavPagePokeInfo";
 import colorByType from "../utils/colorsTypes";
+import Loader from "./Loader";
 
-
+const dark = localStorage.getItem('POKEMONS_MODE_DISPLAY')
 
 const PagePokemonInfo = () => {
   const [pokemonInfo, setPokemonInfo] = useState(null);
@@ -17,10 +18,7 @@ const PagePokemonInfo = () => {
     return percent + "%";
   }
   
-  const { dominantColor, darkerColor, lighterColor, loading} =useDominantColor(pokemonInfo?.sprites?.other["dream_world"].front_default || pokemonInfo?.sprites?.other["official-artwork"].front_default || pokemonInfo?.sprites?.front_default);
-// console.log(pokemonInfo?.types.map((type) => type.type.name));
-// console.log(pokemonInfo?.abilities.map((ability) => ability.ability.name));
-// console.log(pokemonInfo?.moves.map((move) => move.move.name));
+  const { dominantColor, darkerColor, lighterColor} =useDominantColor(pokemonInfo?.sprites?.other["dream_world"].front_default || pokemonInfo?.sprites?.other["official-artwork"].front_default || pokemonInfo?.sprites?.front_default);
 
   useEffect(() => {
     axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
@@ -31,11 +29,8 @@ const PagePokemonInfo = () => {
 
   
   if(!pokemonInfo) {
-    return <p>Loading...</p>
+    return (<div className="w-full h-screen flex items-center justify-center" style={{background: dark === "dark" ? "#334155" : "#fff"}}><Loader /></div>)
   }
-
- //hay que trabajaras
-
 
   return (
     <main className="w-full min-h-screen dark:bg-slate-700 dark:text-white">
