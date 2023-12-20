@@ -13,20 +13,22 @@ const Pagination = ({
         setCurrentPage(1)
     }
     const handlePrevPage = () => {
-        setCurrentPage(currentPage - 1)
+        if (currentPage > 1) { 
+            setCurrentPage(currentPage - 1) 
+        }
     }
     const handleNextPage = () => {
-        setCurrentPage(currentPage + 1)
+        if (currentPage < lastPage) {
+            setCurrentPage(currentPage + 1)
+        }
     }
-
 
     useEffect(() => {
         window.scrollTo(0, 0); // Se desplaza al principio de la página cada vez que currentPage cambia
     }, [currentPage]);
 
-
     return (
-        <ul className="text-lg flex gap-2 justify-center items-center font-semibold mt-10 max-sm:flex-wrap">
+        <ul className="text-lg flex gap-2 justify-center items-center font-semibold mt-10 max-sm:flex-wrap dark:text-white">
             <li>
                 <button
                     onClick={handleFirstPage}

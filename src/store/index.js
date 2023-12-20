@@ -10,5 +10,3 @@ export default configureStore({
         pokemonNames: pokemonNames,
     }
 })
-
-//export default configureStore
