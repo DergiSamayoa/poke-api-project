@@ -6,6 +6,7 @@ import NavPagePokeInfo from "./NavPagePokeInfo";
 import colorByType from "../utils/colorsTypes";
 
 
+
 const PagePokemonInfo = () => {
   const [pokemonInfo, setPokemonInfo] = useState(null);
 
