@@ -1,8 +1,8 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import NavPoke from "./NavPoke";
 import useDominantColor from "../hooks/useDominantColor";
+import NavPagePokeInfo from "./NavPagePokeInfo";
 
 
 const PagePokemonInfo = () => {
@@ -18,7 +18,7 @@ const PagePokemonInfo = () => {
   
   
   
-  const { dominantColor, darkerColor, lighterColor, loading} =useDominantColor(pokemonInfo?.sprites?.other["official-artwork"].front_default)
+  const { dominantColor, darkerColor, lighterColor, loading} =useDominantColor(pokemonInfo?.sprites?.other["dream_world"].front_default || pokemonInfo?.sprites?.other["official-artwork"].front_default || pokemonInfo?.sprites?.front_default)
 
   const colorByType =  {
     normal:"bg-[#c3b59b]",
@@ -45,16 +45,16 @@ const PagePokemonInfo = () => {
 
     
   }
-console.log(pokemonInfo?.types.map((type) => type.type.name));
-console.log(pokemonInfo?.abilities.map((ability) => ability.ability.name));
-console.log(pokemonInfo?.moves.map((move) => move.move.name));
+// console.log(pokemonInfo?.types.map((type) => type.type.name));
+// console.log(pokemonInfo?.abilities.map((ability) => ability.ability.name));
+// console.log(pokemonInfo?.moves.map((move) => move.move.name));
 
   useEffect(() => {
     axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
     .then(({data}) => setPokemonInfo(data))
     .catch(err => console.log(err))
     
-  }, [])
+  }, [id])
 
   
   if(!pokemonInfo) {
@@ -66,15 +66,17 @@ console.log(pokemonInfo?.moves.map((move) => move.move.name));
 
   return (
     <main >
-      
-        <NavPoke />
+      <section className=" w-[100vw] mx-auto max-sm:w-full ">
+         < NavPagePokeInfo  />
+      </section>
+       
      
-      <article className=" max-w-[1108px] mx-auto my-72">
+      <article className=" w-[1008px] mx-auto my-72 font-roboto max-sm:w-[350px] max-sm:mx-auto max-sm:my-15 max-lg:w-[600px] max-lg:mx-auto max-lg:my-15 max-sm:-translate-y-52  ">
 
         
         <header className="relative">
-          <img className="absolute -top-[250px] left-[calc(50%-250px)]" src={pokemonInfo?.sprites?.other["official-artwork"].front_default} alt="" />
-          <div className=" h-[200px] " 
+          <img className="absolute -top-[250px] left-[calc(50%-250px)] max-sm:h-[250px] max-sm:left-[calc(50%-120px)] max-sm:top-[-70px]" src={pokemonInfo?.sprites?.other["official-artwork"].front_default} alt="" />
+          <div className=" h-[200px] rounded-t-lg max-sm:h-[150px]" 
           style={
             {
               background: `radial-gradient(circle at 50% 37%, ${lighterColor} 5px, ${darkerColor})`, borderColor: dominantColor, color: darkerColor 
@@ -83,30 +85,27 @@ console.log(pokemonInfo?.moves.map((move) => move.move.name));
           </div>
         </header>
 
-        <div className="p-3 grid gap-8 shadow-lg ">
+        <div className="grid gap-8 shadow-lg rounded-lg">
           {/*1RO*/}
-        <section className="text-center ">
+        <section className="text-center max-sm:w-[350px]">
 
-          <div className="text-[45px] capitalize">
+          <div className="text-[45px] capitalize max-sm:text-[25px]">
             <span>#{pokemonInfo?.id}</span>
             <div className="flex justify-center items-center gap-1">
               <hr className="w-[200px]" />
               <h3 >{pokemonInfo?.name}</h3>
               <hr className="w-[200px]"/>
-            </div>
-              
-            
-            
+            </div> 
           </div>
         
-           <div className=" grid grid-cols-2 pt-1">
+           <div className=" grid grid-cols-2 pt-4 w-[250px] mx-auto">
             <div>
-            <h5 className="text-[16px]">weight</h5>
-            <span className="text-[25px]">{pokemonInfo?.weight}</span>
+            <h5 className="text-[16px] max-sm:text-[12px]">Weight</h5>
+            <span className="text-[25px] max-sm:text-[15px]">{pokemonInfo?.weight}</span>
             </div>
             <div>
-            <h5 className="text-[16px]">height</h5>
-            <span className="text-[25px]">{pokemonInfo?.height}</span>
+            <h5 className="text-[16px] max-sm:text-[12px]">Weight</h5>
+            <span className="text-[25px] max-sm:text-[15px]">{pokemonInfo?.height}</span>
           </div>
         
         </div>  
@@ -115,14 +114,14 @@ console.log(pokemonInfo?.moves.map((move) => move.move.name));
        
        
         {/*2DO*/}
-        <section className="grid grid-cols-2 gap-4 text-center">
+        <section className="grid grid-cols-2 gap-4 text-center max-sm:w-[350px] ">
         <div>
-          <h4 className="text-[30px]">types</h4>
-          <ul className="flex justify-center gap-4">
+          <h4 className="text-[30px] max-sm:text-[20px]">Types</h4>
+          <ul className="flex justify-center gap-4 flex-wrap">
             {pokemonInfo?.types.map((type) => (
               <li
                 key={type.type.name}
-                className={`capitalize text-[25px]  px-14 py-[1px] rounded-md text-yellow-100 ${colorByType[type.type.name]}`}
+                className={`capitalize text-[25px]  max-sm:text-[15px] px-14 max-sm:px-8 py-[1px] rounded-md text-yellow-100 ${colorByType[type.type.name]}`}
               >
                 {type.type.name}
               </li>
@@ -131,12 +130,12 @@ console.log(pokemonInfo?.moves.map((move) => move.move.name));
         </div>
 
           <div>  
-            <h4 className="text-[30px]">abilities</h4>
+            <h4 className="text-[30px] max-sm:text-[20px]">Abilities</h4>
             <ul className="flex justify-center gap-4 flex-wrap">
             
               {pokemonInfo?.abilities.map((ability) => (
                 <li key={ability.ability.name}
-                    className="capitalize text-[25px] border-2 px-14 py-[1px] h-10 ">
+                    className="capitalize text-[25px] max-sm:text-[15px] border-2 px-14 max-sm:px-8 py-[1px] max-sm:py-[1px] h-10 max-sm:h-7 ">
                   {ability.ability.name}
                 </li>
                 
@@ -153,8 +152,12 @@ console.log(pokemonInfo?.moves.map((move) => move.move.name));
         
 
         {/*3RO*/}
-        <section>
-          <h4>stats</h4>
+        <section className=" p-20 max-sm:p-5 max-sm:w-[350px]">
+          <div className="flex  items-center gap-1">
+            <h4 className="text-[45px] max-sm:text-[25px] ">Stats</h4>
+            <hr className="w-full mt-3"/>
+          </div>
+          
           <ul className="grid gap-4">
             {pokemonInfo?.stats.map((stat) => (
               
@@ -187,13 +190,13 @@ console.log(pokemonInfo?.moves.map((move) => move.move.name));
         </div>
         <br /><br /><br />
          {/*4TO*/}
-        <section className="shadow-md p-3">
-          <div className="grid grid-cols-2 items-center" >
-           <h4 className="text-[45px]" >Movements</h4> 
-           <hr className="w-100 h-5" />
+        <section className="shadow-md p-20 max-sm:w-[350px] max-sm:p-6">
+          <div className="flex  items-center gap-1">
+           <h4 className="text-[45px] max-sm:text-[25px]" >Movements</h4> 
+           <hr className="w-full  mt-3" />
           </div>
           
-          <ul className="flex flex-wrap text-sm justify-center justify-between">
+          <ul className="flex flex-wrap text-sm  justify-between rounded-lg">
           {pokemonInfo?.moves.map((move) => (
             <li key={move.move.name}
             className="bg-[#E5E5E5]  p-2 m-1 rounded-full px-5">

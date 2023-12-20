@@ -38,7 +38,7 @@ const usePagination = (data = [], itemsInPage = 10) => {
         if (i <= totalPages && i > 0) {
             pagesOnCurrentBlock.push(i);
         }
-        console.log(pagesOnCurrentBlock)
+        // console.log(pagesOnCurrentBlock)
     }
 
     return {
