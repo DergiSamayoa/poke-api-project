@@ -27,7 +27,7 @@ const StartPage = () => {
 
   return (
     <article className="flex justify-center items-center w-full min-h-screen bg-[url(/images/background.jpeg)] bg-cover bg-center px-6 overflow-hidden max-sm:py-10">
-      <section className="relative flex gap-16 flex-col justify-center items-center bg-blue-300/30 backdrop-blur-sm w-[1000px] h-[600px] border-[14px] border-[#37474f] rounded-[50px] max-sm:h-[550px] max-sm:px-4 max-sm:gap-12 max-sm:pt-12 max-sm:pb-44">
+      <section className="relative flex gap-16 flex-col justify-center items-center bg-blue-300/30 backdrop-blur-sm w-[1000px] h-[495px] border-[14px] border-[#37474f] rounded-[50px] max-sm:h-[550px] max-sm:px-4 max-sm:gap-12 max-sm:pt-12 max-sm:pb-44 mt-[100px]">
         <img className="absolute top-[-170px] h-[300px] max-sm:h-[150px] max-sm:top-[-90px]" src="/images/logo.png" alt="logo" />
         <img className="absolute w-[400px] right-[-207px] bottom-[-20px] max-sm:w-[230px] max-sm:right-[-115px]" src="/images/pokeball.png" alt="pokeball" />
         <h2 className="text-5xl font-semibold text-center max-sm:text-2xl">Hello Trainer Pokemón!</h2>
