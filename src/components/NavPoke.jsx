@@ -40,7 +40,7 @@ const NavPoke = () => {
         <img className="w-[250px] absolute top-[-20px] left-4 max-lg:w-[150px] max-lg:top-[-10px] max-lg:left-[calc(50%-75px)]" src="/images/logo.png" alt="" />
         <h2 className="w-[300px] text-[#cc0000] absolute bottom-2 left-12 text-lg font-medium max-lg:top-[60px] max-lg:text-center max-lg:left-0 max-lg:w-full dark:text-white">Welcome Trainer <span className="capitalize">{trainerName}</span>!</h2>
         <InputSearch/>
-        <select onChange={handleOptions} className="capitalize w-[200px] h-[40px] rounded-md flex justify-between shadow-[0_5px_50px_0_rgba(55,71,79,0.2)] border-[1px] border-[#eee] px-4 outline-none dark:border-slate-600 dark:bg-transparent dark:text-white" name="types" id="">
+        <select onChange={handleOptions} className=" z-20 capitalize w-[200px] h-[40px] rounded-md flex justify-between shadow-[0_5px_50px_0_rgba(55,71,79,0.2)] border-[1px] border-[#eee] px-4 outline-none dark:border-slate-600 dark:bg-transparent dark:text-white" name="" id="">
           <option className="capitalize dark:bg-slate-700" value="all">All</option>
           {results.map((type) => {
             return <option className="capitalize dark:bg-slate-700" key={type.name} value={type.name}>{type.name}</option>
