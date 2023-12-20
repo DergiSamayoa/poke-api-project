@@ -63,13 +63,13 @@ const InputSearch = () => {
         Search
       </button>
       {filteredOptions.length > 0 && (
-          <ul className="absolute mt-10 w-[260px] z-50 bg-[#ffcb05] p-1">
+          <ul className="absolute mt-10 w-[260px] z-50 bg-[#ffcb05] dark:bg-[#306cb4]  p-1">
           {filteredOptions.map((option, index) => (
               <li
                   key={index}
                   onClick={() => handleOptionClick(option)}
-                  className="cursor-pointer bg-[#ffcb05]  text-[#306cb4]
-                        hover:bg-[#306cb4] hover:text-[#ffcb05] p-2
+                  className="cursor-pointer dark:bg-[#306cb4]  dark:text-[#ffcb05]
+                        hover:bg-[#334155] hover:text-[#ffcb05] p-2
                         rounded-md"
               >
               {option}

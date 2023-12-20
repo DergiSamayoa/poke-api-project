@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom"
 import useDominantColor from "../hooks/useDominantColor";
 import NavPagePokeInfo from "./NavPagePokeInfo";
 
-
 const PagePokemonInfo = () => {
   const [pokemonInfo, setPokemonInfo] = useState(null);
 
@@ -16,9 +15,7 @@ const PagePokemonInfo = () => {
     
   }
   
-  
-  
-  const { dominantColor, darkerColor, lighterColor, loading} =useDominantColor(pokemonInfo?.sprites?.other["dream_world"].front_default || pokemonInfo?.sprites?.other["official-artwork"].front_default || pokemonInfo?.sprites?.front_default)
+  const { dominantColor, darkerColor, lighterColor} =useDominantColor(pokemonInfo?.sprites?.other["dream_world"].front_default || pokemonInfo?.sprites?.other["official-artwork"].front_default || pokemonInfo?.sprites?.front_default)
 
   const colorByType =  {
     normal:"bg-[#c3b59b]",
@@ -45,9 +42,6 @@ const PagePokemonInfo = () => {
 
     
   }
-// console.log(pokemonInfo?.types.map((type) => type.type.name));
-// console.log(pokemonInfo?.abilities.map((ability) => ability.ability.name));
-// console.log(pokemonInfo?.moves.map((move) => move.move.name));
 
   useEffect(() => {
     axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
@@ -56,24 +50,16 @@ const PagePokemonInfo = () => {
     
   }, [id])
 
-  
   if(!pokemonInfo) {
     return <p>Loading...</p>
   }
 
- //hay que trabajaras
-
-
   return (
     <main >
-      <section className=" w-[100vw] mx-auto max-sm:w-full ">
+      <section >
          < NavPagePokeInfo  />
       </section>
-       
-     
-      <article className=" w-[1008px] mx-auto my-72 font-roboto max-sm:w-[350px] max-sm:mx-auto max-sm:my-15 max-lg:w-[600px] max-lg:mx-auto max-lg:my-15 max-sm:-translate-y-52  ">
-
-        
+      <article className=" w-[980px] mx-auto my-72 font-roboto max-sm:w-[350px] max-sm:mx-auto max-sm:my-15 max-lg:w-[600px] max-lg:mx-auto max-lg:my-15 max-sm:-translate-y-52  ">
         <header className="relative">
           <img className="absolute -top-[250px] left-[calc(50%-250px)] max-sm:h-[250px] max-sm:left-[calc(50%-120px)] max-sm:top-[-70px]" src={pokemonInfo?.sprites?.other["official-artwork"].front_default} alt="" />
           <div className=" h-[200px] rounded-t-lg max-sm:h-[150px]" 
@@ -97,8 +83,7 @@ const PagePokemonInfo = () => {
               <hr className="w-[200px]"/>
             </div> 
           </div>
-        
-           <div className=" grid grid-cols-2 pt-4 w-[250px] mx-auto">
+          <div className=" grid grid-cols-2 pt-4 w-[250px] mx-auto">
             <div>
             <h5 className="text-[16px] max-sm:text-[12px]">Weight</h5>
             <span className="text-[25px] max-sm:text-[15px]">{pokemonInfo?.weight}</span>
@@ -107,9 +92,7 @@ const PagePokemonInfo = () => {
             <h5 className="text-[16px] max-sm:text-[12px]">Weight</h5>
             <span className="text-[25px] max-sm:text-[15px]">{pokemonInfo?.height}</span>
           </div>
-        
         </div>  
-         
         </section>
        
        
