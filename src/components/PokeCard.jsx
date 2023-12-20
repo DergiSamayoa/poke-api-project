@@ -25,7 +25,7 @@ const PokeCard = ({ pokemon, index }) => {
           <div className="w-full flex flex-col items-center">
             <h4 className="text-[25px] font-medium capitalize text-center">{data.name}</h4>
             <h5 className="text-[14px] capitalize">{ShowTypePokemon(data.types)}</h5>
-            <p className="text-[10px] opacity-95">Tipe</p>
+            <p className="text-[10px] opacity-95">Types</p>
           </div>
           <section className="w-full h-[50%] flex justify-between px-8 py-1">
             <div className="h-full flex flex-col gap-4">
