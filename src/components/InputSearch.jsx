@@ -18,7 +18,6 @@ const InputSearch = () => {
       return name.name.toLowerCase().includes(value.toLowerCase())
     })
     dispatch(setDataPokemons(filterNames))
-    
   }
 
   const [inputValue, setInputValue] = useState('')
@@ -48,7 +47,6 @@ const InputSearch = () => {
 
   return (
     <form onSubmit={handleSubmit}
-
           className="z-50 w-[400px] h-[40px] rounded-md  flex justify-between shadow-[2px_2px_50px_0_rgba(55,71,79,0.2)] border-[1px] border-[#eee] max-sm:w-auto dark:border-slate-600">
       <input 
           value={inputValue} 
@@ -67,8 +65,8 @@ const InputSearch = () => {
               <li
                   key={index}
                   onClick={() => handleOptionClick(option)}
-                  className="cursor-pointer dark:bg-[#306cb4]  dark:text-[#ffcb05]
-                        hover:bg-[#334155] hover:text-[#ffcb05] p-2
+                  className="cursor-pointer dark:bg-[#306cb4]  dark:text-[#ffcb05] text-[#306cb4] 
+                        hover:dark:bg-[#334155] hover:bg-[#306cb4] hover:text-[#ffcb05] p-2
                         rounded-md"
               >
               {option}

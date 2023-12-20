@@ -28,7 +28,7 @@ const Pagination = ({
     }, [currentPage]);
 
     return (
-        <ul className="text-lg flex gap-2 justify-center items-center font-semibold mt-10 max-sm:flex-wrap dark:text-white">
+        <ul className="text-lg flex gap-2 justify-center items-center font-semibold mt-10 max-sm:flex-wrap max-sm:gap-1 dark:text-white">
             <li>
                 <button
                     onClick={handleFirstPage}
@@ -55,7 +55,7 @@ const Pagination = ({
                         <li key={page}>
                             <button                            
                                 onClick={() => setCurrentPage(page)}
-                                className={`font-semibold border-[1px] flex items-center justify-center border-red-700 text-xl h-12 aspect-square rounded-md hover:bg-red-700 hover:text-white ${currentPage === page ? "bg-red-700 text-white" : "border-red-700"}`}
+                                className={`font-semibold border-[1px] flex items-center  justify-center border-red-700 text-xl h-12 max-sm:aspect-auto max-sm:px-[10px] aspect-square rounded-md hover:bg-red-700 hover:text-white ${currentPage === page ? "bg-red-700 text-white" : "border-red-700"}`}
                             >
                                 {page}
                             </button>
