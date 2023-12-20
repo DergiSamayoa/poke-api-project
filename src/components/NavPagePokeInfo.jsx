@@ -9,7 +9,11 @@ const NavPagePokeInfo = () => {
           src="/images/logo.png"
           alt=""
         />
-        <BackButton />
+        <div className="translate-y-[120px] translate-x-[5px] max-sm:translate-y-[50px] max-md:translate-y-[60px] max-lg:translate-y-[50px]">
+          <BackButton />
+        </div>
+        
+        
 
       </section>
       
