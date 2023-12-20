@@ -1,3 +1,4 @@
+import BackButton from "./BackButton";
 
 const NavPagePokeInfo = () => {
   return (
@@ -8,6 +9,7 @@ const NavPagePokeInfo = () => {
           src="/images/logo.png"
           alt=""
         />
+        <BackButton />
 
       </section>
       
