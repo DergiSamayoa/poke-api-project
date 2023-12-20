@@ -10,8 +10,6 @@ const SettingsPage = ({ setShowSettings }) => {
   const [pokemonsPerPage, setPokemonsPerPage] = useState(localStorage.getItem('POKEMONS_PER_PAGE') || 20);
   const [modeDisplay, setModeDisplay] = useState(localStorage.getItem('POKEMONS_MODE_DISPLAY') || 'light');
 
-  console.log(modeDisplay)
-
   const handleFormSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem('POKEMONS_PAGES_PER_BLOCK', pagesPerBlock);
@@ -64,8 +62,7 @@ const SettingsPage = ({ setShowSettings }) => {
             <option value="light">Light</option>
           </select>
         </label>
-        <button 
-            /* onSubmit={handleFormSubmit} */
+        <button
             type="submit"
             className='rounded-lg bg-[#306cb4] px-4 py-1 text-white'>
           Save

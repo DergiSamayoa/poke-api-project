@@ -1,3 +1,5 @@
+import BackButton from "./BackButton";
+
 const NavPagePokeInfo = () => {
   return (
     <nav className="h-[150px] w-full bg-[#CC0000] bg-contain bg-no-repeat flex justify-center items-center text-black max-lg:h-[90px] max-sm:min-w-full">
@@ -7,7 +9,10 @@ const NavPagePokeInfo = () => {
           src="/images/logo.png"
           alt=""
         />
+        <BackButton />
+
       </section>
+      
     </nav>
   );
 };
