@@ -35,8 +35,8 @@ const MainPokedex = () => {
   return (
     <>
       <NavPoke />
-      <main className="bg-[#E3ECF2] min-h-screen w-full p-10 dark:bg-slate-700">
-        <article className="w-full grid grid-cols-4 gap-10 place-items-center max-w-[1920px] mx-auto max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1">
+      <main className="bg-[#E3ECF2] min-h-screen flex flex-col justify-between w-full p-10 dark:bg-slate-700">
+        <article className="w-full grid grid-cols-4 gap-10 place-items-center max-w-[1600px] mx-auto max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1">
           {currentDisplay.map((pokemon, index) => (
             <PokeCard key={pokemon.name} pokemon={pokemon} index={index}/>
           ))}
