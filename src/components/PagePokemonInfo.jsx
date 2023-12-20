@@ -62,7 +62,6 @@ const PagePokemonInfo = () => {
               color: darkerColor,
             }}
           >
-            .
           </div>
         </header>
 
