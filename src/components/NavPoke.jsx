@@ -31,7 +31,6 @@ const NavPoke = () => {
     } catch (error) {
       console.log(error)
     }
-    e.target.value = ""
   }
 
   return (
@@ -40,10 +39,10 @@ const NavPoke = () => {
         <img className="w-[250px] absolute top-[-20px] left-4 max-lg:w-[150px] max-lg:top-[-10px] max-lg:left-[calc(50%-75px)]" src="/images/logo.png" alt="" />
         <h2 className="w-[300px] text-[#cc0000] absolute bottom-2 left-12 text-lg font-medium max-lg:top-[60px] max-lg:text-center max-lg:left-0 max-lg:w-full dark:text-white">Welcome Trainer <span className="capitalize">{trainerName}</span>!</h2>
         <InputSearch/>
-        <select onChange={handleOptions} className=" z-20 capitalize w-[200px] h-[40px] rounded-md flex justify-between shadow-[0_5px_50px_0_rgba(55,71,79,0.2)] border-[1px] border-[#eee] px-4 outline-none dark:border-slate-600 dark:bg-transparent dark:text-white" name="" id="">
-          <option className="capitalize dark:bg-slate-700" value="all">All</option>
+        <select onChange={handleOptions} className="scrollbar z-20 capitalize w-[200px] h-[40px] rounded-md flex justify-between shadow-[0_5px_50px_0_rgba(55,71,79,0.2)] border-[1px] border-[#eee] px-4 outline-none dark:border-slate-600 dark:bg-transparent dark:text-white" name="" id="">
+          <option className=" z-20 capitalize text-black dark:bg-slate-700 dark:text-white" value="all">All</option>
           {results.map((type) => {
-            return <option className="capitalize dark:bg-slate-700" key={type.name} value={type.name}>{type.name}</option>
+            return <option className="z-20 capitalize dark:bg-slate-700" key={type.name} value={type.name}>{type.name}</option>
           })}
         </select>
         <i onClick={() => setShowSettings(true)} className={`ri-settings-4-fill text-2xl absolute top-1 right-2 text-red-700 select-none ${showSettings ? "scale-0" : "scale-100"} transition duration-500 dark:text-slate-300`}></i>
