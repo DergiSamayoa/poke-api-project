@@ -17,7 +17,7 @@ const PagePokemonInfo = () => {
     return percent + "%";
   }
   
-  const { dominantColor, darkerColor, lighterColor, loading} =useDominantColor(pokemonInfo?.sprites?.other["dream_world"].front_default || pokemonInfo?.sprites?.other["official-artwork"].front_default || pokemonInfo?.sprites?.front_default);
+  const { dominantColor, darkerColor, lighterColor} =useDominantColor(pokemonInfo?.sprites?.other["dream_world"].front_default || pokemonInfo?.sprites?.other["official-artwork"].front_default || pokemonInfo?.sprites?.front_default);
 // console.log(pokemonInfo?.types.map((type) => type.type.name));
 // console.log(pokemonInfo?.abilities.map((ability) => ability.ability.name));
 // console.log(pokemonInfo?.moves.map((move) => move.move.name));
@@ -57,7 +57,7 @@ const PagePokemonInfo = () => {
         </header>
 
         <div className="grid gap-8 shadow-[0_0_15px_0_rgba(0,0,0,0.15)] rounded-lg border-[1px] dark:border-slate-500">
-          {/*1RO*/}
+          
         <section className="text-center max-sm:w-[350px]">
 
           <div className="flex flex-col items-center text-[45px] pt-5 capitalize max-sm:text-[25px]">
@@ -65,9 +65,9 @@ const PagePokemonInfo = () => {
               <h5 className="text-[40px] font-medium " style={{color: darkerColor}}>#{pokemonInfo?.id}</h5>
             </div>
             <div className="flex justify-center items-center gap-1">
-              <hr className="w-[200px]" />
+              <hr className="w-[230px] max-sm:w-[50px] max-lg:w-[120px]" />
               <h3 className="text-[45px] font-medium" style={{color: darkerColor }}>{pokemonInfo?.name}</h3>
-              <hr className="w-[200px]"/>
+              <hr className="w-[230px] max-sm:w-[50px] max-lg:w-[120px]"/>
             </div> 
           </div>
         
@@ -84,18 +84,19 @@ const PagePokemonInfo = () => {
         </div>  
         </section>
 
-        {/*2DO*/}
+        
         <section className="grid grid-cols-2 gap-4 text-center max-sm:w-[350px]">
         <div>
           <h4 className="text-[30px] font-medium max-sm:text-[20px]">Types</h4>
           <ul className="flex justify-center gap-4 flex-wrap">
             {pokemonInfo?.types.map((type) => (
-              <li
-                key={type.type.name}
-                className={`capitalize w-[205px] h-[45px] text-[25px] max-sm:text-[15px] px-14 max-sm:px-8 py-[1px] rounded-md text-white ${colorByType[type.type.name]}`}
-              >
-                {type.type.name}
-              </li>
+             <li
+             key={type.type.name}
+             className={`capitalize w-[205px]  text-[25px] max-sm:text-[15px] px-14 max-sm:px-8 py-[1px] max-sm:py-[1px] h-[45px] max-sm:w-[120px] max-sm:h-7 rounded-md text-white ${colorByType[type.type.name]}`}
+           >
+             {type.type.name}
+           </li> 
+
             ))}
           </ul>
         </div>
@@ -105,10 +106,10 @@ const PagePokemonInfo = () => {
             <ul className="flex justify-center gap-4 flex-wrap">
             
               {pokemonInfo?.abilities.map((ability) => (
-                <li key={ability.ability.name}
-                    className="capitalize rounded-md text-[25px] max-sm:text-[15px] border-2 px-14 max-sm:px-8 py-[1px] max-sm:py-[1px] h-[45px] max-sm:h-7 dark:border-slate-500">
-                  {ability.ability.name}
-                </li>
+               <li key={ability.ability.name}
+               className="capitalize rounded-md text-[25px] max-sm:text-[15px] border-2 px-14 max-sm:px-8 py-[1px] max-sm:py-[1px] h-[45px] max-sm:h-7 dark:border-slate-500">
+             {ability.ability.name}
+           </li>
                 
                 
                 )) }
@@ -122,7 +123,7 @@ const PagePokemonInfo = () => {
         </section>
         
 
-        {/*3RO*/}
+        
         <section className=" p-20 max-sm:p-5 max-sm:w-[350px] ">
           <div className="flex  items-center gap-1">
             <h4 className="text-[45px] max-sm:text-[25px] font-medium">Stats</h4>
@@ -160,7 +161,7 @@ const PagePokemonInfo = () => {
        
         </div>
         <br /><br /><br />
-         {/*4TO*/}
+         
         <section className="shadow-[0_0_15px_0_rgba(0,0,0,0.15)] p-20 max-sm:w-[350px] max-sm:p-6 rounded-lg  border-[1px] dark:border-slate-500">
           <div className="flex  items-center gap-1">
            <h4 className="text-[45px] max-sm:text-[25px]" >Movements</h4> 
